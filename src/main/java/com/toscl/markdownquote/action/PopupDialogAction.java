@@ -90,7 +90,9 @@ public class PopupDialogAction extends AnAction {
 
             copyAndToast(currentProject, markQuote, dlgTitle);
         } else if (code != null){
-            markQuote = replaceText.replace(" {{start-line}-{end-line}} {{high-lines}} ({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})", "")
+            markQuote = replaceText
+                    .replace(" {{start-line}-{end-line}} {{high-lines}} ({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})", "")
+                    .replace("[{relative-path}?#L{start-line}-L{end-line}]({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})", "")
                     .replace("{code}", code);
             copyAndToast(currentProject, markQuote, dlgTitle);
         } else {

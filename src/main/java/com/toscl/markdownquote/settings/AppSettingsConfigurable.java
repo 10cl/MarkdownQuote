@@ -35,20 +35,20 @@ public class AppSettingsConfigurable implements Configurable {
   @Override
   public boolean isModified() {
     AppSettingsState settings = AppSettingsState.getInstance();
-    boolean modified = !mySettingsComponent.getUserNameText().equals(settings.templateMdQuote);
+    boolean modified = !mySettingsComponent.getPanelTemplate().equals(settings.templateMdQuote);
     return modified;
   }
 
   @Override
   public void apply() {
     AppSettingsState settings = AppSettingsState.getInstance();
-    settings.templateMdQuote = mySettingsComponent.getUserNameText();
+    settings.templateMdQuote = mySettingsComponent.getPanelTemplate();
   }
 
   @Override
   public void reset() {
     AppSettingsState settings = AppSettingsState.getInstance();
-    mySettingsComponent.setUserNameText(settings.templateMdQuote);
+    mySettingsComponent.setPanelTemplate(settings.templateMdQuote);
   }
 
   @Override

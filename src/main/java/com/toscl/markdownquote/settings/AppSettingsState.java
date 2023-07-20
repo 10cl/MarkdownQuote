@@ -19,9 +19,7 @@ import org.jetbrains.annotations.Nullable;
 )
 public class AppSettingsState implements PersistentStateComponent<AppSettingsState> {
 
-  public String templateMdQuote = "```{language} {{start-line}-{end-line}} {{high-lines}} ({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})\n" +
-          "{code}\n" +
-          "```";
+  public String templateMdQuote = AppSettingsComponent.TEMPLATE_LINK;
 
   public static AppSettingsState getInstance() {
     return ApplicationManager.getApplication().getService(AppSettingsState.class);
