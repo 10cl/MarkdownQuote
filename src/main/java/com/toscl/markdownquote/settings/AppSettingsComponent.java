@@ -17,13 +17,13 @@ public class AppSettingsComponent {
 
   private final JPanel myMainPanel;
 
-  public static final String TEMPLATE_FULL = "```{language} {{start-line}-{end-line}} {{high-lines}} ({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})\n" +
+  public static final String TEMPLATE_FULL = "```{language} {{start-line}-{end-line}} {{high-lines}} ({remote-url}/blob/{commit-id}/{relative-path}?#L{start-line}-L{end-line})\n" +
           "{code}\n" +
           "```";
   public static final String TEMPLATE_LINK = "```{language}\n" +
           "{code}\n" +
           "```\n" +
-          "[{relative-path}?#L{start-line}-L{end-line}]({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})";
+          "[{relative-path}?#L{start-line}-L{end-line}]({remote-url}/blob/{commit-id}/{relative-path}?#L{start-line}-L{end-line})";
 
   public static final String TEMPLATE_LANGUAGE = "```{language}\n" +
           "{code}\n" +

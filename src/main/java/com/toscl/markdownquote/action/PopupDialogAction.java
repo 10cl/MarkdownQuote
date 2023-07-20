@@ -57,7 +57,7 @@ public class PopupDialogAction extends AnAction {
         String code = editor.getSelectionModel().getSelectedText();
 
         String markQuote = templateMdQuote;
-        String urlPatter = "({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})";
+        String urlPatter = "({remote-url}/blob/{commit-id}/{relative-path}?#L{start-line}-L{end-line})";
 
         String replaceText = markQuote
                 .replace("{language}", language == null ? "" : language);
@@ -68,14 +68,14 @@ public class PopupDialogAction extends AnAction {
                 Pair<String, String> pair = getCurrentRepositoryGitUrl(gitPath);
                 if (pair != null){
                     String remoteUrl = pair.getFirst();
-                    String branchName = pair.getSecond();
+                    String commitId = pair.getSecond();
 
                     String relativePath = filepath.replace(gitPath.replaceAll("\\\\", "/"), "");
                     remoteUrl = remoteUrl.replace(".git", "");
 
 
                     replaceText = replaceText.replace("{remote-url}", remoteUrl)
-                            .replace("{branch}", branchName)
+                            .replace("{commit-id}", commitId)
                             .replace("{relative-path}", relativePath);
                 }
             }else{
@@ -91,8 +91,8 @@ public class PopupDialogAction extends AnAction {
             copyAndToast(currentProject, markQuote, dlgTitle);
         } else if (code != null){
             markQuote = replaceText
-                    .replace(" {{start-line}-{end-line}} {{high-lines}} ({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})", "")
-                    .replace("[{relative-path}?#L{start-line}-L{end-line}]({remote-url}/blob/{branch}/{relative-path}?#L{start-line}-L{end-line})", "")
+                    .replace(" {{start-line}-{end-line}} {{high-lines}} ({remote-url}/blob/{commit-id}/{relative-path}?#L{start-line}-L{end-line})", "")
+                    .replace("[{relative-path}?#L{start-line}-L{end-line}]({remote-url}/blob/{commit-id}/{relative-path}?#L{start-line}-L{end-line})", "")
                     .replace("{code}", code);
             copyAndToast(currentProject, markQuote, dlgTitle);
         } else {
@@ -136,10 +136,10 @@ public class PopupDialogAction extends AnAction {
                 return null;
             }
 
-            String branchName = getGitBranchInfo(virtualFile);
+            String commitId = getGitCommitId(virtualFile);
             String remoteUrl = getGitRemoteURL(virtualFile);
-            if (branchName != null && remoteUrl != null){
-                return new Pair<String, String>(remoteUrl, branchName);
+            if (commitId != null && remoteUrl != null){
+                return new Pair<String, String>(remoteUrl, commitId);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -185,6 +185,32 @@ public class PopupDialogAction extends AnAction {
                 return null;
             }
         }
+    }
+
+    private static String getGitCommitId(VirtualFile virtualFile) throws IOException {
+        File headFile = new File(virtualFile.getPath(), ".git/HEAD");
+        if (!headFile.exists()) {
+            return null;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(headFile))) {
+            String ref = reader.readLine();
+            if (ref.startsWith("ref: ")) {
+                // It's a branch reference
+                String branchRef = ref.substring(5).trim();
+                File branchFile = new File(virtualFile.getPath(), ".git/" + branchRef);
+                if (branchFile.exists()) {
+                    try (BufferedReader branchReader = new BufferedReader(new FileReader(branchFile))) {
+                        return branchReader.readLine().trim();
+                    }
+                }
+            } else {
+                // It's a commit ID
+                return ref.trim();
+            }
+        }
+
+        return null;
     }
 
     /**

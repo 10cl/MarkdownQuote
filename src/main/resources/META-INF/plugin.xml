@@ -18,8 +18,9 @@
   <change-notes>
     <![CDATA[
       <ul>
-        <li><b>1.0.2</b> default template change to common markdown & add more template</li>
-        <li><b>1.0.1</b> add setting panel in Settings -> Tools -> MarkdownQuote</li>
+        <li><b>1.0.2</b> fix bug, we should use the commit to generate permalink not branch name.</li>
+        <li><b>1.0.1</b> default template change to common markdown & add more template</li>
+        <li><b>1.0.0</b> add setting panel in Settings -> Tools -> MarkdownQuote</li>
       </ul>
     ]]>
   </change-notes>
