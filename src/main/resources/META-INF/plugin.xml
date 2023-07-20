@@ -1,0 +1,47 @@
+<!-- Copyright 2000-2022 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+
+<idea-plugin>
+
+  <!-- Unique id for this plugin. Must stay constant for the life of the plugin. -->
+  <id>com.toscl.markdownquote</id>
+
+  <!-- Text to display as name on Preferences/Settings | Plugin page -->
+  <name>MarkdownQuote</name>
+
+  <!-- Indicate this plugin can be loaded in all IntelliJ Platform-based products. -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <!-- Text to display as description on Preferences/Settings | Plugin page -->
+  <description>
+    <![CDATA[
+        Right-click and choose "Markdown Quote...", then get the code block as you want.<br> You can change the template as you like.
+    ]]>
+  </description>
+  <change-notes>
+    <![CDATA[
+      <ul>
+        <li><b>1.0.1</b>add setting panel in Settings -> Tools -> MarkdownQuote</li>
+      </ul>
+    ]]>
+  </change-notes>
+
+  <!-- Text to display as company information on Preferences/Settings | Plugin page -->
+  <vendor url="https://source.toscl.com">SourceCodeTrace</vendor>
+
+  <actions>
+    <action id="com.toscl.markdownquote.action.PopupDialogAction" class="com.toscl.markdownquote.action.PopupDialogAction"
+            text="Markdown Quote..." description="Markdown Quote Copied!" icon="SdkIcons.Sdk_default_icon">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+    </action>
+
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationConfigurable parentId="tools" instance="com.toscl.markdownquote.settings.AppSettingsConfigurable"
+                             id="com.toscl.markdownquote.settings.AppSettingsConfigurable"
+                             displayName="Markdown Quote"/>
+    <applicationService serviceImplementation="com.toscl.markdownquote.settings.AppSettingsState"/>
+  </extensions>
+
+</idea-plugin>
