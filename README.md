@@ -1,62 +1,75 @@
-# MarkdownQuote
+# MarkdownQuote: Simplify Code Quoting in Markdown!
 
-Right-click and choose "Markdown Quote...", then get the code block as you want.
+[English](README.md) **|** [简体中文](README_CN.md)
 
-You can change the template as you like.
+---
 
-## How to Use?
+![jet_plugin_search](https://raw.githubusercontent.com/SourceCodeTrace/websites/main/source/.vuepress/public/images/jet_plugin_search.png)
+
+Are you tired of manually formatting code blocks in your Markdown documents? MarkdownQuote is here to save the day! This powerful JetBrains plugin makes code quoting a breeze, allowing you to focus on what matters most: writing excellent content.
+
+## Why MarkdownQuote?
+
+* **Effortless Installation**: Simply head to Jetbrains IDE Plugins Search and search for "MarkdownQuote." With just a few clicks, you'll have MarkdownQuote up and running. It supports all IDE versions above 193, ensuring compatibility with your favorite Jetbrains IDE.
+
+* **Flexible Templates**: MarkdownQuote provides customizable templates to suit your unique needs. You can easily change the template according to your preferences.
+
+* **Quick and Convenient**: With MarkdownQuote, quoting code is as simple as a right-click! Choose "Markdown Quote..." to get the code block exactly as you want it.
 
 
-- Settings(Choose Template)  
-![](src/main/resources/icons/settings.png)
+## How to Get MarkdownQuote
 
-- Choose Code snippet  
-![](src/main/resources/icons/right_click.png)
+You can get MarkdownQuote from various sources:
 
-- Copied
-![](src/main/resources/icons/copied.png)
+* **Jetbrains Plugin Repository**: Visit the official MarkdownQuote page on the [Jetbrains Plugin Repository](https://plugins.jetbrains.com/plugin/22311-markdownquote) and click "Install" to add it to your IDE.
 
-## Copy Template
+* **GitHub**: For those who prefer the GitHub approach, you can find MarkdownQuote's repository at [https://github.com/10cl/MarkdownQuote](https://github.com/10cl/MarkdownQuote).
 
-- Template: language & link & code  
-````markdown
-```java
-        // Use current adjustment when freezing, set adjustment when unfreezing.
-        if (state.getCurAdj() >= ProcessList.CACHED_APP_MIN_ADJ && !opt.isFrozen()
-                && !opt.shouldNotFreeze()) {
-            mCachedAppOptimizer.freezeAppAsyncLSP(app);
-        } else if (state.getSetAdj() < ProcessList.CACHED_APP_MIN_ADJ) {
-            mCachedAppOptimizer.unfreezeAppLSP(app, oomAdjReason);
-        }
-    }
-```
-[OomAdjuster.java#3125-L3131](https://github.com/10cl/fwkdev/blob/android-13.0.0_r52/dev/src/frameworks/base/services/core/java/com/android/server/am/OomAdjuster.java#3125-L3131)
-````
+* **Jetbrains Market**: If you have the MarkdownQuote.jar file, you can easily install it directly from your local path.
 
-- Template: language & wrap lines & high lines & link & code  
-````markdown
-```java {3125-3131} (https://github.com/10cl/fwkdev/blob/android-13.0.0_r52/dev/src/frameworks/base/services/core/java/com/android/server/am/OomAdjuster.java#3125-L3131)
-        // Use current adjustment when freezing, set adjustment when unfreezing.
-        if (state.getCurAdj() >= ProcessList.CACHED_APP_MIN_ADJ && !opt.isFrozen()
-                && !opt.shouldNotFreeze()) {
-            mCachedAppOptimizer.freezeAppAsyncLSP(app);
-        } else if (state.getSetAdj() < ProcessList.CACHED_APP_MIN_ADJ) {
-            mCachedAppOptimizer.unfreezeAppLSP(app, oomAdjReason);
-        }
-    }
-```
-````
 
-- Template: language & code  
-````markdown
-```java
-        // Use current adjustment when freezing, set adjustment when unfreezing.
-        if (state.getCurAdj() >= ProcessList.CACHED_APP_MIN_ADJ && !opt.isFrozen()
-                && !opt.shouldNotFreeze()) {
-            mCachedAppOptimizer.freezeAppAsyncLSP(app);
-        } else if (state.getSetAdj() < ProcessList.CACHED_APP_MIN_ADJ) {
-            mCachedAppOptimizer.unfreezeAppLSP(app, oomAdjReason);
-        }
-    }
-```
-````
+## How to Use MarkdownQuote
+
+1. **Choose a Template**: Select the template of your choice from the settings menu. ![settings](https://raw.githubusercontent.com/SourceCodeTrace/websites/main/source/.vuepress/public/images/settings.png)
+
+2. **Quote Code Snippets**: Right-click on the desired code snippet. ![right_click](https://raw.githubusercontent.com/SourceCodeTrace/websites/main/source/.vuepress/public/images/right_click.png)
+
+3. **Copy and Paste**: MarkdownQuote will generate the correctly formatted code block. Simply copy it and paste it into your Markdown document. ![copied](https://raw.githubusercontent.com/SourceCodeTrace/websites/main/source/.vuepress/public/images/copied.png)
+
+
+## Available Templates
+
+MarkdownQuote offers various templates to cater to different use cases. Here are some examples:
+
+1. Template: language & link & code
+
+    ````markdown
+    ```java
+    // Your code goes here
+    ```
+   [SourceFile.java#L100-L110](https://github.com/yourusername/repo/blob/master/SourceFile.java#L100-L110)
+    ````
+
+2. Template: language & wrap lines & high lines & link & code
+
+    ````markdown
+    ```java {100-110} (https://github.com/yourusername/repo/blob/master/SourceFile.java#L100-L110)
+    // Your code goes here
+    ```
+    ````
+
+3. Template: language & code
+
+    ````markdown
+    ```java
+    // Your code goes here
+    ```
+   ````
+
+
+## What's New in Version 1.0.2
+
+* Fixed a bug where the permalink was generated from the commit id instead of branch name.
+* Improved default template to use common markdown syntax and added more template options.
+
+Upgrade your Markdown writing experience with MarkdownQuote! Access the plugin now and enjoy effortless code quoting in your Markdown documents. Happy coding!
